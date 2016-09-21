@@ -204,6 +204,8 @@
 "C:\Users\epicodus\Desktop\NationBuilder\src\NationBuilder\Migrations\20160921172158_Initial.Designer.cs"
 "C:\Users\epicodus\Desktop\NationBuilder\src\NationBuilder\Migrations\20160921183516_ChangeUserToUserIdInNation.cs"
 "C:\Users\epicodus\Desktop\NationBuilder\src\NationBuilder\Migrations\20160921183516_ChangeUserToUserIdInNation.Designer.cs"
+"C:\Users\epicodus\Desktop\NationBuilder\src\NationBuilder\Migrations\20160921214150_ChangeUserIdToString.cs"
+"C:\Users\epicodus\Desktop\NationBuilder\src\NationBuilder\Migrations\20160921214150_ChangeUserIdToString.Designer.cs"
 "C:\Users\epicodus\Desktop\NationBuilder\src\NationBuilder\Migrations\NationBuilderDbContextModelSnapshot.cs"
 "C:\Users\epicodus\Desktop\NationBuilder\src\NationBuilder\Models\ApplicationUser.cs"
 "C:\Users\epicodus\Desktop\NationBuilder\src\NationBuilder\Models\City.cs"

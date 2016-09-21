@@ -1,0 +1,33 @@
+﻿
+@using NationBuilder.Models
+@model Nation
+
+
+<h1>Welcome, @ViewBag.user.UserName!</h1>
+
+<div class="newNation">
+
+        <h2>Create your Nation</h2>
+
+        <form asp-controller="Home" asp-action="CreateNation" method="post" class="create-nation">
+            <p>Nation Name: <input asp-for="Name" /></p>
+            <button type="submit">Create!</button>
+        </form>
+
+
+</div>
+
+<script>
+    $('create-nation').submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '@Url.Action("CreateNation")',
+            type: 'POST',
+            dataType: 'json',
+            data: $(this).serialize(),
+            success: function(result) {
+                @Model = result
+            }
+        })
+    })
+</script>
