@@ -1,33 +1,74 @@
-﻿
+﻿@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = ViewBag.title;
+}
 @using NationBuilder.Models
 @model Nation
 
 
 <h1>Welcome, @ViewBag.user.UserName!</h1>
 
-<div class="newNation">
+@if (@ViewBag.user.NationId == 0)
+{
+    <div class="newNation">
 
         <h2>Create your Nation</h2>
 
         <form asp-controller="Home" asp-action="CreateNation" method="post" class="create-nation">
             <p>Nation Name: <input asp-for="Name" /></p>
+            <p>Name your currency: <input asp-for="CurrencyName" /></p>
             <button type="submit">Create!</button>
         </form>
 
 
-</div>
+    </div>
+}
+
+else 
+{
+   <p>Command your mighty nation of @Model.Name!</p> 
+   <p>Capital: @Model.Capital @Model.CurrencyName</p>
+   <p>Stability: @Model.Stability</p>
+
+   <div id="event-trigger">Face your next challenge!</div>
+
+   <div class="event-display">
+       <h3><div id="event-name"></div></h3>
+       <p><div id="event-description"></div></p>
+
+   </div>
+}
+
 
 <script>
-    $('create-nation').submit(function (event) {
-        event.preventDefault();
-        $.ajax({
-            url: '@Url.Action("CreateNation")',
-            type: 'POST',
-            dataType: 'json',
-            data: $(this).serialize(),
-            success: function(result) {
-                @Model = result
+    $(document).ready(function() {
+        $('.create-nation').submit(function (event) {
+            event.preventDefault();
+            $.ajax({
+                url: '@Url.Action("CreateNation")',
+                type: 'POST',
+                dataType: 'json',
+                data: $(this).serialize(),
+                success: function(result) {
+                    @Model = result
             }
-        })
-    })
+            });
+        });
+
+
+        $('#event-trigger').click(function () {
+            $.ajax({
+                url: '@Url.Action("GetEvent", "Game")',
+                type: 'GET',
+                dataType: 'json',
+                data: $(this).serialize(),
+                success: function(result) {
+                    console.log(result);
+                    $('#event-name').text(result.name);
+                    $('#event-description').text(result.description);
+                }
+            });
+    
+        });
+    });
 </script>

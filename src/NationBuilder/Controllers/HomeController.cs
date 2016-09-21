@@ -39,13 +39,14 @@ namespace NationBuilder.Controllers
             return View(userNation);
         }
         [HttpPost]
-        public async Task<IActionResult> CreateNation(string Name)
+        public async Task<IActionResult> CreateNation(string Name, string CurrencyName)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             ApplicationUser user = await _userManager.FindByIdAsync(userId);
 
             Nation newNation = new Nation();
             newNation.Name = Name;
+            newNation.CurrencyName = CurrencyName; 
             newNation.UserId = userId;
             _db.Nations.Add(newNation);
             _db.SaveChanges();

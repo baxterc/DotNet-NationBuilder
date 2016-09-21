@@ -12,7 +12,6 @@ namespace NationBuilder.Models
 
         public ApplicationUser()
         {
-            NationId = 0;
         }
     }
 }
