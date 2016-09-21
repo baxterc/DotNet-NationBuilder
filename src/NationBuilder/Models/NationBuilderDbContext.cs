@@ -16,6 +16,11 @@ namespace NationBuilder.Models
         public virtual DbSet<Government> Governments { get; set; }
         public virtual DbSet<Nation> Nations { get; set; }
         public virtual DbSet<Resource> Resources { get; set; }
+
+        public NationBuilderDbContext()
+        {
+
+        }
         
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

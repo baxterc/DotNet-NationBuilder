@@ -1,8 +1,13 @@
 ﻿@using NationBuilder.ViewModels
-@model LoginViewModel
 
 @{ 
     ViewData["Title"] = "Log In";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model LoginViewModel
+<h1>NationBuilder</h1>
+
+<h2>Welcome to Pomodoro Quest!</h2>
+<p>@Html.ActionLink("Log in", "Login", "Users")</p>
+<p>@Html.ActionLink("Create your Account", "Create", "Users")</p>

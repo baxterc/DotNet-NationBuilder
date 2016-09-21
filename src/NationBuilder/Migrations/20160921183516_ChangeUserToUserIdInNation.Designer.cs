@@ -8,9 +8,10 @@ using NationBuilder.Models;
 namespace NationBuilder.Migrations
 {
     [DbContext(typeof(NationBuilderDbContext))]
-    partial class NationBuilderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160921183516_ChangeUserToUserIdInNation")]
+    partial class ChangeUserToUserIdInNation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")

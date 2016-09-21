@@ -9,5 +9,10 @@ namespace NationBuilder.Models
     public class ApplicationUser : IdentityUser
     {
         public int NationId { get; set; }
+
+        public ApplicationUser()
+        {
+            NationId = 0;
+        }
     }
 }

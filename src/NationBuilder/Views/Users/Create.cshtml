@@ -1,0 +1,20 @@
+﻿@using NationBuilder.ViewModels
+@model UserCreateViewModel
+
+<h2>Create a User</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.UserName)
+    @Html.TextBoxFor(model => model.UserName)
+
+    @Html.LabelFor(model => model.Password)
+    @Html.PasswordFor(model => model.Password)
+
+    @Html.LabelFor(model => model.ConfirmPassword)
+    @Html.PasswordFor(model => model.ConfirmPassword)
+
+
+    <input type="submit" value="Create User" />
+}
+<p>@Html.ActionLink("Return to user list", "Home", "Index")</p>
