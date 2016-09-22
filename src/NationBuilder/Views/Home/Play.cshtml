@@ -5,7 +5,6 @@
 @using NationBuilder.Models
 @model Nation
 
-
 <h1>Welcome, @ViewBag.user.UserName!</h1>
 
 @if (@ViewBag.user.NationId == 0)
@@ -27,15 +26,22 @@
 else 
 {
    <p>Command your mighty nation of @Model.Name!</p> 
-   <p>Capital: @Model.Capital @Model.CurrencyName</p>
-   <p>Stability: @Model.Stability</p>
+   <p>Capital: <span id="nation-capital">@Model.Capital</span> @Model.CurrencyName</p>
+   <p>Stability: <span id="nation-stability">@Model.Stability</span></p>
 
    <div id="event-trigger">Face your next challenge!</div>
 
    <div class="event-display">
        <h3><div id="event-name"></div></h3>
        <p><div id="event-description"></div></p>
-
+       <form class="event-result">
+           <input id="event-id" name="eventId" type="hidden" value="" />
+           <input id="nation-id" name="nationId" type="hidden" value="@Model.Id" />
+           <button type="submit" class="option-button" id="button1" name="choiceValue" value="1"></button>
+           <button type="submit" class="option-button" id="button2" name="choiceValue" value="2"></button>
+           <button type="submit" class="option-button" id="button3" name="choiceValue" value="3"></button>
+        </form>
+       <div id="result-text"></div>
    </div>
 }
 
@@ -51,7 +57,7 @@ else
                 data: $(this).serialize(),
                 success: function(result) {
                     @Model = result
-            }
+                }
             });
         });
 
@@ -64,11 +70,39 @@ else
                 data: $(this).serialize(),
                 success: function(result) {
                     console.log(result);
+                    $('.event-display').show();
                     $('#event-name').text(result.name);
                     $('#event-description').text(result.description);
+                    $('#button1').text(result.option1);
+                    $('#button2').text(result.option2);
+                    $('#button3').text(result.option3);
+                    $("#event-id").val(result.id);
                 }
             });
-    
         });
-    });
+
+        var chosenOption;
+        $(".option-button").click(function() {
+            chosenOption = this.value;
+        });
+
+        $("body").on("submit", ".event-result", function(event){
+            event.preventDefault();
+            var optionChosen = chosenOption; 
+            var natId = this.nationId.value;
+            var eveId = this.eventId.value;
+                $.ajax({
+                    url: '@Url.Action("EventResult", "Game")',
+                    type: "POST",
+                    dataType: 'json',
+                    data: {eventId: eveId, nationId: natId, choiceValue: optionChosen},
+                    success: function(result) {
+                        $('#nation-capital').text(result.capital);
+                        $('#nation-stability').text(result.stability);
+                        $('#result-text').text(@ViewBag.resultText);
+                    }
+                });
+            });
+        });
+    
 </script>

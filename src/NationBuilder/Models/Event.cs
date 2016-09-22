@@ -17,6 +17,11 @@ namespace NationBuilder.Models
         public string Option1 { get; set; }
         public string Option2 { get; set; }
         public string Option3 { get; set; }
-        public int Response { get; set; } = 0;
+        public string TextResponse1 { get; set; }
+        public string TextResponse2 { get; set; }
+        public string TextResponse3 { get; set; }
+        public string ValueResponse1 { get; set; }
+        public string ValueResponse2 { get; set; }
+        public string ValueResponse3 { get; set; }
     }
 }

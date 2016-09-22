@@ -51,6 +51,8 @@ namespace NationBuilder
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            app.UseStaticFiles();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

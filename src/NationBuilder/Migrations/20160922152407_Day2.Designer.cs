@@ -8,9 +8,10 @@ using NationBuilder.Models;
 namespace NationBuilder.Migrations
 {
     [DbContext(typeof(NationBuilderDbContext))]
-    partial class NationBuilderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160922152407_Day2")]
+    partial class Day2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -219,17 +220,7 @@ namespace NationBuilder.Migrations
 
                     b.Property<string>("Option3");
 
-                    b.Property<string>("TextResponse1");
-
-                    b.Property<string>("TextResponse2");
-
-                    b.Property<string>("TextResponse3");
-
-                    b.Property<string>("ValueResponse1");
-
-                    b.Property<string>("ValueResponse2");
-
-                    b.Property<string>("ValueResponse3");
+                    b.Property<int>("Response");
 
                     b.HasKey("Id");
 
